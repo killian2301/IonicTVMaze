@@ -32,3 +32,5 @@ plugins/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+coverage/
