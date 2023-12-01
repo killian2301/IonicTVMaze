@@ -5,6 +5,7 @@
   [spaceBetween]="16"
   [slidesOffsetBefore]="16"
   [slidesOffsetAfter]="16"
+  [breakpoints]="breakpoints"
 >
   <swiper-slide *ngFor="let show of shows | async">
     <app-tv-show-card [show]="show" imageHeight="200px"></app-tv-show-card>
