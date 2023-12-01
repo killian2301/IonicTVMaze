@@ -61,7 +61,7 @@ describe('TvShowService', () => {
       } as TvShow;
       jest.spyOn(httpService, 'get').mockReturnValue(of(mockShow));
 
-      const show = await firstValueFrom(service.getShowById('1')); // use firstValueFrom with await
+      const show = await firstValueFrom(service.getShowById('1'));
 
       expect(show).toEqual(mockShow);
     });
