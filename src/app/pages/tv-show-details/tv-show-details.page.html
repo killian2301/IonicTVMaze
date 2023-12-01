@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{show?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <section *ngIf="show">
+    <app-lazy-image [src]="show.image?.original"></app-lazy-image>
+
+    <section>
+      <h2>Summary</h2>
+      <div [innerHTML]="show.summary"></div>
+    </section>
+
+    <section *ngIf="show.genres.length">
+      <h2>Genres</h2>
+      <div class="genre" *ngFor="let genre of show.genres">{{genre}}</div>
+    </section>
+
+    <section>
+      <h2>Rating</h2>
+      <app-rating [rating]="show.rating.average"></app-rating>
+    </section>
+  </section>
+</ion-content>

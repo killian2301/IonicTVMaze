@@ -1,0 +1,17 @@
+$headerAndSearchbarHeight: 186px;
+
+.search-results__no-results-container {
+  height: calc(100vh - $headerAndSearchbarHeight);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-results__container {
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  margin: 16px;
+}

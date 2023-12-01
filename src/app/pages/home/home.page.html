@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> IonicTVMaze </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">IonicTVMaze</ion-title>
+    </ion-toolbar>
+    <app-search [searchQueryControl]="searchQueryControl"></app-search>
+  </ion-header>
+
+  <section *ngIf="!searchQueryControl.value; else searchResults">
+    <app-top10-section [shows]="top10TvShows"></app-top10-section>
+    <app-tv-shows-by-genre-section
+      [shows]="tvShows"
+    ></app-tv-shows-by-genre-section>
+  </section>
+</ion-content>
+
+<ng-template #searchResults>
+  <div
+    class="search-results__container"
+    *ngIf="(searchedShows |async)?.length; else noResults"
+  >
+    <app-tv-show-card
+      *ngFor="let show of searchedShows | async"
+      [show]="show"
+      imageHeight="200px"
+    ></app-tv-show-card>
+  </div>
+  <ng-template #noResults>
+    <div class="search-results__no-results-container">
+      <img
+        src="/assets/images/not_found.jpg"
+        alt="not found image"
+        height="200px"
+      />
+      <p>No results found.</p>
+    </div>
+  </ng-template>
+</ng-template>

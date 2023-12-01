@@ -1,0 +1,9 @@
+<section>
+  <h2 class="ion-text-center">By Genre</h2>
+  <ng-container *ngFor="let genre of genres">
+    <app-tv-shows-genre-list
+      [genre]="genre"
+      [shows]="shows"
+    ></app-tv-shows-genre-list>
+  </ng-container>
+</section>

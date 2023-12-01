@@ -1,0 +1,18 @@
+<section class="image__container">
+  <div
+    class="spinner__container"
+    [ngStyle]="{ visibility: isLoading ? 'visible' : 'hidden' }"
+  >
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+  </div>
+  <ion-img
+    #image
+    [src]="src"
+    [ngStyle]="{
+      visibility: !isLoading ? 'visible' : 'hidden',
+      height: height
+    }"
+    (ionImgDidLoad)="onImageLoaded()"
+    (ionError)="onErrorLoad()"
+  ></ion-img>
+</section>
