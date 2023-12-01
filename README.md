@@ -24,8 +24,8 @@ I also used Jest for testing, which is a powerful JavaScript testing framework w
 
 ## Prerequisites
 
-- Node.js version 18.15.0
-- npm version 9.5.0
+- Node.js version 18.13.0
+- npm version 8.19.3
 
 ## Running the Application
 
