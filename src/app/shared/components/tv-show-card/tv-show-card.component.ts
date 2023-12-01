@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import {
+  IonBadge,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -30,6 +31,7 @@ import { RatingComponent } from '../rating/rating.component';
     IonCardSubtitle,
     IonCardContent,
     IonSkeletonText,
+    IonBadge,
     CommonModule,
     LazyImageComponent,
     RatingComponent,
@@ -38,6 +40,8 @@ import { RatingComponent } from '../rating/rating.component';
 export class TvShowCardComponent {
   @Input() show!: TvShow;
   @Input() imageHeight: string = '100%';
+  @Input() position?: number;
+  @Input() showIndex?: boolean = false;
 
   constructor(private router: Router) {
     addIcons({ star });

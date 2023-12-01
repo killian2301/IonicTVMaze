@@ -1,4 +1,5 @@
 <ion-card (click)="onOpenDetails()" *ngIf="show">
+  <div class="card__bubble" *ngIf="position && showIndex">{{ position }}</div>
   <app-lazy-image
     [src]="show.image?.medium"
     [height]="imageHeight"

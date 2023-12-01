@@ -14,6 +14,8 @@ import { TvShowCardComponent } from '../tv-show-card/tv-show-card.component';
 })
 export class TvShowListComponent {
   @Input() shows!: Observable<TvShow[]>;
+  @Input() showIndex: boolean = false;
+
   breakpoints = {
     320: {
       slidesPerView: 2.5,
