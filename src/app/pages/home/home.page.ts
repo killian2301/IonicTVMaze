@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import {
   IonButton,
   IonButtons,
   IonContent,
   IonHeader,
-  IonIcon,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
@@ -16,11 +14,9 @@ import { starOutline } from 'ionicons/icons';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { SearchComponent } from '../../shared/components/search/search.component';
 import { TvShowCardComponent } from '../../shared/components/tv-show-card/tv-show-card.component';
-import { TvShowListComponent } from '../../shared/components/tv-show-list/tv-show-list.component';
 import { TvShow } from '../../shared/interfaces/tv-show.interface';
 import { TvShowService } from '../../shared/services/tv-show.service';
 import { Top10SectionComponent } from './components/top10-section/top10-section.component';
-import { TvShowsGenreListComponent } from './components/tv-shows-by-genre-section/components/tv-shows-genre-list/tv-shows-genre-list.component';
 import { TvShowsByGenreSectionComponent } from './components/tv-shows-by-genre-section/tv-shows-by-genre-section.component';
 
 @Component({
@@ -36,11 +32,7 @@ import { TvShowsByGenreSectionComponent } from './components/tv-shows-by-genre-s
     IonContent,
     IonButtons,
     IonButton,
-    IonIcon,
     SearchComponent,
-    TvShowsGenreListComponent,
-    TvShowListComponent,
-    RouterLink,
     Top10SectionComponent,
     TvShowsByGenreSectionComponent,
     TvShowCardComponent,
