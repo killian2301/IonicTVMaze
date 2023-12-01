@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, shareReplay } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpServiceInterface } from '../../core/interfaces/http-service.interface';
 import { ErrorHandlingService } from '../../core/services/error-handling.service';
@@ -15,16 +15,24 @@ const TOP_10_NUMBER = 10;
   providedIn: 'root',
 })
 export class TvShowService {
+  private shows$!: Observable<TvShow[]>;
+
   constructor(
     @Inject(HTTP_SERVICE_TOKEN) private httpService: HttpServiceInterface,
     private errorHandlingService: ErrorHandlingService
   ) {}
 
   getShows(): Observable<TvShow[]> {
-    const url = `${environment.baseAPIUrl}/shows?page=1`;
-    return this.httpService
-      .getAll<TvShow>(url)
-      .pipe(catchError(this.errorHandlingService.handleError));
+    if (!this.shows$) {
+      const url = `${environment.baseAPIUrl}/shows?page=1`;
+      this.shows$ = this.httpService
+        .getAll<TvShow>(url)
+        .pipe(
+          shareReplay(1),
+          catchError(this.errorHandlingService.handleError)
+        );
+    }
+    return this.shows$;
   }
 
   getShowById(id: string): Observable<TvShow> {
@@ -51,6 +59,7 @@ export class TvShowService {
       return of([]);
     }
     const url = `${environment.baseAPIUrl}/search/shows?q=${query}`;
+
     return this.httpService.getAll<ShowSearchResult>(url).pipe(
       map((results) => results.map((result) => result.show)),
       catchError(this.errorHandlingService.handleError)
