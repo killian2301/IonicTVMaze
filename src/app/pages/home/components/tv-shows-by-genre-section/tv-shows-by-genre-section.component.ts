@@ -13,6 +13,6 @@ import { TvShowsGenreListComponent } from './components/tv-shows-genre-list/tv-s
 })
 export class TvShowsByGenreSectionComponent {
   @Input() shows!: Observable<TvShow[]>;
-  genres: string[] = ['Drama', 'Comedy', 'Crime'];
+  genres: string[] = ['Drama', 'Comedy', 'Crime', 'Sports'];
   constructor() {}
 }
