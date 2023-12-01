@@ -9,22 +9,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <section *ngIf="show">
-    <app-lazy-image [src]="show.image?.original"></app-lazy-image>
+  <div *ngIf="show" class="show__container">
+    <div class="show__image">
+      <app-lazy-image [src]="show.image?.original"></app-lazy-image>
+    </div>
 
-    <section>
-      <h2>Summary</h2>
-      <div [innerHTML]="show.summary"></div>
-    </section>
+    <div class="show__info">
+      <section>
+        <h2>Summary</h2>
+        <div [innerHTML]="show.summary"></div>
+      </section>
 
-    <section *ngIf="show.genres.length">
-      <h2>Genres</h2>
-      <div class="genre" *ngFor="let genre of show.genres">{{genre}}</div>
-    </section>
+      <section *ngIf="show.genres.length">
+        <h2>Genres</h2>
+        <div class="genre" *ngFor="let genre of show.genres">{{genre}}</div>
+      </section>
 
-    <section>
-      <h2>Rating</h2>
-      <app-rating [rating]="show.rating.average"></app-rating>
-    </section>
-  </section>
+      <section>
+        <h2>Rating</h2>
+        <app-rating [rating]="show.rating.average"></app-rating>
+      </section>
+    </div>
+  </div>
 </ion-content>
