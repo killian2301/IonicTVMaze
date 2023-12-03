@@ -11,47 +11,52 @@ export interface TvShow {
   premiered: string;
   ended: string;
   officialSite: string;
-  schedule: {
-    time: string;
-    days: string[];
-  };
+  schedule: Schedule;
   rating: {
     average: number;
   };
   weight: number;
-  network: {
-    id: number;
-    name: string;
-    country: {
-      name: string;
-      code: string;
-      timezone: string;
-    };
-    officialSite?: string;
-  };
+  network: Network;
   webChannel: null;
   dvdCountry: null;
-  externals: {
-    tvrage: number;
-    thetvdb: number;
-    imdb: string;
-  };
-  image?: {
-    medium?: string;
-    original?: string;
-  };
+  externals: Externals;
+  image?: Image;
   summary: string;
   updated: number;
-  _links: {
-    self: {
-      href: string;
-    };
-    previousepisode?: {
-      href: string;
-    };
-  };
+  _links: Links;
 }
 
+interface Image {
+  medium?: string;
+  original?: string;
+}
+interface Schedule {
+  time: string;
+  days: string[];
+}
+interface Network {
+  id: number;
+  name: string;
+  country: {
+    name: string;
+    code: string;
+    timezone: string;
+  };
+  officialSite?: string;
+}
+interface Links {
+  self: {
+    href: string;
+  };
+  previousepisode?: {
+    href: string;
+  };
+}
+interface Externals {
+  tvrage: number;
+  thetvdb: number;
+  imdb: string;
+}
 export interface ShowSearchResult {
   score: number;
   show: TvShow;
