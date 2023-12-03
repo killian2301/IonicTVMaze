@@ -12,7 +12,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { Subject, of, switchMap, takeUntil } from 'rxjs';
+import { Subject, take } from 'rxjs';
 import { LazyImageComponent } from 'src/app/shared/components/lazy-image/lazy-image.component';
 import { RatingComponent } from 'src/app/shared/components/rating/rating.component';
 import { TvShow } from 'src/app/shared/interfaces/tv-show.interface';
@@ -48,16 +48,13 @@ export class TvShowDetailsPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.paramMap
-      .pipe(
-        takeUntil(this.unsubscribeSignal$),
-        switchMap((params: any) => {
-          const id = params.get('id');
-          if (!id) return of(null);
-          return this.tvShowService.getShowById(id);
-        })
-      )
-      .subscribe((show) => (this.show = show));
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id) {
+      this.tvShowService
+        .getShowById(id)
+        .pipe(take(1))
+        .subscribe((show) => (this.show = show));
+    }
   }
 
   ngOnDestroy(): void {
