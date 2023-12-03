@@ -28,3 +28,25 @@
 ion-back-button {
   --color: var(--ion-back-button);
 }
+
+.spinner__container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  ion-spinner {
+    z-index: 15;
+  }
+}
+
+.spinner__overlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 2;
+  backdrop-filter: blur(2px);
+}
