@@ -9,7 +9,10 @@
     <ion-toolbar>
       <ion-title size="large">IonicTVMaze</ion-title>
     </ion-toolbar>
-    <app-search [searchQueryControl]="searchQueryControl"></app-search>
+    <app-search
+      [searchQueryControl]="searchQueryControl"
+      (clearSearch)="onClearSearch()"
+    ></app-search>
   </ion-header>
 
   <section *ngIf="!searchQueryControl.value; else searchResults">

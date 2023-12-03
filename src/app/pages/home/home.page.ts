@@ -62,7 +62,9 @@ export class HomePage implements OnInit, OnDestroy {
   searchQuery(query: string): void {
     this.searchedShows = this.tvShowService.searchShows(query);
   }
-
+  onClearSearch() {
+    this.searchQueryControl.setValue('');
+  }
   ngOnDestroy(): void {
     this.unsubscribeSignal$.next(true);
   }

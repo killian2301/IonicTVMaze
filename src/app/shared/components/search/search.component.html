@@ -2,4 +2,5 @@
   placeholder="Search for a tv show"
   debounce="500"
   [formControl]="searchQueryControl"
+  (ionClear)="onClear()"
 ></ion-searchbar>

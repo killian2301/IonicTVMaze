@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IonSearchbar } from '@ionic/angular/standalone';
 @Component({
@@ -10,4 +10,9 @@ import { IonSearchbar } from '@ionic/angular/standalone';
 })
 export class SearchComponent {
   @Input() searchQueryControl!: FormControl;
+  @Output() clearSearch = new EventEmitter();
+
+  onClear(): void {
+    this.clearSearch.emit();
+  }
 }
