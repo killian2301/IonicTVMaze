@@ -11,7 +11,13 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { starOutline } from 'ionicons/icons';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 import { SearchComponent } from '../../shared/components/search/search.component';
 import { TvShowCardComponent } from '../../shared/components/tv-show-card/tv-show-card.component';
 import { TvShow } from '../../shared/interfaces/tv-show.interface';
@@ -40,7 +46,7 @@ import { TvShowsByGenreSectionComponent } from './components/tv-shows-by-genre-s
 })
 export class HomePage implements OnInit, OnDestroy {
   tvShows!: Observable<TvShow[]>;
-  searchedShows!: Observable<TvShow[]>;
+  searchedShows: BehaviorSubject<TvShow[]> = new BehaviorSubject<TvShow[]>([]);
   top10TvShows!: Observable<TvShow[]>;
   searchQueryControl: FormControl = new FormControl('');
   unsubscribeSignal$ = new Subject();
@@ -56,11 +62,16 @@ export class HomePage implements OnInit, OnDestroy {
   }
   handleSearchSubscription(): void {
     this.searchQueryControl.valueChanges
-      .pipe(takeUntil(this.unsubscribeSignal$))
-      .subscribe((query) => this.searchQuery(query));
+      .pipe(
+        takeUntil(this.unsubscribeSignal$),
+        switchMap((query) => this.tvShowService.searchShows(query))
+      )
+      .subscribe((shows) => this.searchedShows.next(shows));
   }
   searchQuery(query: string): void {
-    this.searchedShows = this.tvShowService.searchShows(query);
+    this.tvShowService.searchShows(query).subscribe((shows) => {
+      this.searchedShows.next(shows);
+    });
   }
   onClearSearch() {
     this.searchQueryControl.setValue('');
