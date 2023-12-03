@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { Observable, catchError, map, of, shareReplay } from 'rxjs';
+import { Observable, catchError, map, of, retry, shareReplay } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpServiceInterface } from '../../core/interfaces/http-service.interface';
 import { ErrorHandlingService } from '../../core/services/error-handling.service';
@@ -29,6 +29,7 @@ export class TvShowService {
         .getAll<TvShow>(url)
         .pipe(
           shareReplay(1),
+          retry(2),
           catchError(this.errorHandlingService.handleError)
         );
     }
@@ -39,19 +40,15 @@ export class TvShowService {
     const url = `${environment.baseAPIUrl}/shows/${id}`;
     return this.httpService
       .get<TvShow>(url)
-      .pipe(catchError(this.errorHandlingService.handleError));
+      .pipe(retry(2), catchError(this.errorHandlingService.handleError));
   }
 
   getTopShows(): Observable<TvShow[]> {
     return this.getShows().pipe(
       map((shows) => this.sortAndSliceShows(shows)),
+      retry(2),
       catchError(this.errorHandlingService.handleError)
     );
-  }
-  private sortAndSliceShows(shows: TvShow[]): TvShow[] {
-    return shows
-      .sort((a, b) => b.rating.average - a.rating.average)
-      .slice(0, TOP_10_NUMBER);
   }
 
   searchShows(query: string): Observable<TvShow[]> {
@@ -64,5 +61,11 @@ export class TvShowService {
       map((results) => results.map((result) => result.show)),
       catchError(this.errorHandlingService.handleError)
     );
+  }
+
+  private sortAndSliceShows(shows: TvShow[]): TvShow[] {
+    return shows
+      .sort((a, b) => b.rating.average - a.rating.average)
+      .slice(0, TOP_10_NUMBER);
   }
 }
