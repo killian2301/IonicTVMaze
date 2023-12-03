@@ -54,12 +54,12 @@ export class HomePage implements OnInit, OnDestroy {
     this.tvShows = this.tvShowService.getShows();
     this.top10TvShows = this.tvShowService.getTopShows();
   }
-  handleSearchSubscription() {
+  handleSearchSubscription(): void {
     this.searchQueryControl.valueChanges
       .pipe(takeUntil(this.unsubscribeSignal$))
       .subscribe((query) => this.searchQuery(query));
   }
-  searchQuery(query: string) {
+  searchQuery(query: string): void {
     this.searchedShows = this.tvShowService.searchShows(query);
   }
 
