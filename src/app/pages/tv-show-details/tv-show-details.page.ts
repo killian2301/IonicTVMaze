@@ -43,7 +43,7 @@ export class TvShowDetailsPage implements OnInit, OnDestroy {
   unsubscribeSignal$ = new Subject();
 
   constructor(
-    private TvShowService: TvShowService,
+    private tvShowService: TvShowService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -53,9 +53,9 @@ export class TvShowDetailsPage implements OnInit, OnDestroy {
       .subscribe((params) => {
         const id = params.get('id');
         if (!id) return;
-        this.TvShowService.getShowById(id).subscribe(
-          (show) => (this.show = show)
-        );
+        this.tvShowService
+          .getShowById(id)
+          .subscribe((show) => (this.show = show));
       });
   }
 
