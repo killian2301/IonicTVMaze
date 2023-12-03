@@ -18,7 +18,6 @@ export class LazyImageComponent implements OnInit {
 
   isLoading = true;
 
-  constructor() {}
   ngOnInit(): void {
     if (!this.src) this.src = NO_IMAGE_PLACEHOLDER;
   }

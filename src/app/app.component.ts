@@ -10,6 +10,4 @@ register();
   standalone: true,
   imports: [IonApp, IonRouterOutlet, HttpClientModule],
 })
-export class AppComponent {
-  constructor() {}
-}
+export class AppComponent {}

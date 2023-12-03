@@ -15,5 +15,4 @@ import { TvShowsGenreListComponent } from './components/tv-shows-genre-list/tv-s
 export class TvShowsByGenreSectionComponent {
   @Input() shows!: Observable<TvShow[]>;
   genres: Genre[] = [Genre.Drama, Genre.Comedy, Genre.Crime, Genre.Sports];
-  constructor() {}
 }

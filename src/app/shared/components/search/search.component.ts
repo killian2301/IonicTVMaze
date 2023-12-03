@@ -10,5 +10,4 @@ import { IonSearchbar } from '@ionic/angular/standalone';
 })
 export class SearchComponent {
   @Input() searchQueryControl!: FormControl;
-  constructor() {}
 }

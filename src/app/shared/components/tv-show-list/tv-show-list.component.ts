@@ -33,5 +33,4 @@ export class TvShowListComponent {
       slidesPerView: 7.5,
     },
   };
-  constructor() {}
 }

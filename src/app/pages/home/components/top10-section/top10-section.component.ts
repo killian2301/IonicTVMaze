@@ -12,6 +12,4 @@ import { TvShowListComponent } from '../../../../shared/components/tv-show-list/
 })
 export class Top10SectionComponent {
   @Input() shows!: Observable<TvShow[]>;
-
-  constructor() {}
 }

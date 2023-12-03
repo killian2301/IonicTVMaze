@@ -15,7 +15,6 @@ export class TvShowsGenreListComponent implements OnInit {
   @Input() genre!: string;
   @Input() shows!: Observable<TvShow[]>;
   filteredShowsByGenre!: Observable<TvShow[]>;
-  constructor() {}
   ngOnInit(): void {
     this.filteredShowsByGenre = this.shows.pipe(
       map((shows) => shows.filter((show) => show.genres.includes(this.genre)))
