@@ -1,6 +1,7 @@
 ion-card {
   animation: fadeIn 2s forwards;
   margin: 0 0 16px;
+  cursor: pointer;
   .card__bubble {
     background-color: var(--ion-color-secondary);
     padding: 10px;
