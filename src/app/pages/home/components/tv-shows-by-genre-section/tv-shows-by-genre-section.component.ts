@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Genre } from 'src/app/shared/enums/tv-show.enums';
-import { TvShow } from 'src/app/shared/interfaces/tv-show.interface';
+import { Genre } from '../../../../shared/enums/tv-show.enums';
+import { TvShow } from '../../../../shared/interfaces/tv-show.interface';
 import { TvShowsGenreListComponent } from './components/tv-shows-genre-list/tv-shows-genre-list.component';
 
 @Component({

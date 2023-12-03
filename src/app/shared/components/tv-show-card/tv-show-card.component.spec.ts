@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Router } from '@angular/router';
+import { Genre } from '../../enums/tv-show.enums';
 import { TvShow } from '../../interfaces/tv-show.interface';
 import { TvShowCardComponent } from './tv-show-card.component';
 
@@ -23,7 +24,7 @@ describe('TvShowCardComponent', () => {
     component = fixture.componentInstance;
     component.show = {
       id: 12,
-      genres: ['Crime', 'Drama'],
+      genres: [Genre.Crime, Genre.Drama],
       rating: { average: 2 },
     } as TvShow;
     fixture.detectChanges();
